@@ -1,18 +1,30 @@
-import React from 'react';
-import {LabelTag} from './label';
+import React, {useState, useEffect} from 'react';
+import {TextField, Button, IconButton} from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
+import {useDispatch, useSelector} from 'react-redux';
+// import {LabelTag} from './label';
 
-function EditableNote({note}){
-
-  const [content, setContent] = useState({note.content});
+function EditableNote({handlePane, note}){
+  const [content, setContent] = useState();
+  if(note !== undefined){
+    setContent(note.content);
+  }
+  // useEffect(() =>{
+  //   setContent(note.content);
+  // },[content]);
+  console.log("note in EditableNote: " + JSON.stringify(note));
   const handleOnChange = (event) =>{
     setContent(event.target.value);
   }
   const handleSubmit = () =>{
-
+    console.log("in submit: ");
   }
 
   return(
     <div>
+      <IconButton onClick = {(event) => { handlePane(false)} }>
+        <CloseIcon/>
+      </IconButton>
       <form
       // className={classes.form}
       noValidate autoComplete="off"
@@ -21,8 +33,8 @@ function EditableNote({note}){
         value = {content}
         name="noteContent"
         variant="outlined"
-        onChanges = {handleOnChange}/>
-        <LabelTag/>
+        onChange = {handleOnChange}/>
+
         <Button
           color="primary"
           // fullWidth
@@ -36,3 +48,5 @@ function EditableNote({note}){
     </div>
   );
 }
+
+export default EditableNote;

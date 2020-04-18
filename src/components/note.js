@@ -1,29 +1,26 @@
 import React from 'react';
 import {TextField, Button} from '@material-ui/core';
 
-function Note({note}){
+function Note({note, handleEdit, handleDelete}){
+
   return(
     <div>
-      // <label><label> lable here
+      {console.log("in note")}
       <TextField id="outlined-basic"
       value = {note.content}
       name="noteContent"
       variant="outlined"/>
       <Button
         color="primary"
-        // fullWidth
-        // type="submit"
         variant="contained"
-        // className={classes.addUser}
+        onClick = {handleEdit}
       >
         Edit
       </Button>
       <Button
         color="primary"
-        // fullWidth
-        // type="submit"
         variant="contained"
-        // className={classes.addUser}
+        onClick = {handleDelete}
       >
         Delete
       </Button>
@@ -31,6 +28,4 @@ function Note({note}){
   );
 }
 
-export{
-  Note
-}
+export default Note;
